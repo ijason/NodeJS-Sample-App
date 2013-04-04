@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1= title
+    #employees
+        - each employee in employees
+          div.employee
+            div.created_at= employee.created_at
+            div.title= employee.title 
+            div.name= employee.name
+                form( method="post", action="/employee/:id/delete") 
+                    input(name="_id", type="hidden", value=employee._id.toHexString()) 
+                    input(id="delete", value="X", type="submit")
+                form( method="get", action="/employee/:id/edit") 
+                    input(name="_id", type="hidden", value=employee._id.toHexString()) 
+                    input(id="edit", value="Edit", type="submit")
+        a(href="/employee/new")!= "Add New Employee"
