@@ -50,6 +50,14 @@ app.get('/employee/new', function(req, res) {
     });
 });
 
+
+//new employee with post
+app.post('/employee/new', function(req, res) {
+    res.render('employee_new', {
+        title: 'New Employee'
+    });
+});
+
 //save new employee
 app.post('/employee/new', function(req, res){
     employeeProvider.save({
