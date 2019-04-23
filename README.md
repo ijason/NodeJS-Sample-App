@@ -18,6 +18,18 @@ Employee Database
 
 docker build -t ijason/nodejs-sample .
 
+## How to run the application
+
+### Kubernetes
+```
+kubectl apply -f k8s.yaml
+```
+
+### OpenShift
+```
+oc apply -f k8s.yaml
+```
+
 ## Contact
 
 Jason Everett
