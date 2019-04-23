@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+
+var waitForMongo = require('../');
+var MONGO_URL= process.argv[2] || process.env.MONGO_URL;
+var TIMEOUT = process.argv[3] || process.env.TIMEOUT;
+
+if(!MONGO_URL) {
+  console.error("MONGO_URL is not provided either using first paramater or as a env. variable");
+  process.exit(1);
+}
+
+waitForMongo(MONGO_URL, {timeout: TIMEOUT}, function(err) {
+  if(err) {
+    throw err;
+  } else {
+    console.log('connected');
+    process.exit(0);
+  }
+});
