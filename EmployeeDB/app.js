@@ -25,6 +25,37 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  // Set locals, only providing error in development
+  res.locals.error = err;
+  res.locals.error.status = err.status || 500;
+  if (process.env.NODE_ENV === 'production') {
+    delete err.stack;
+  } else if (err.code === 'permission_denied') {
+    res.status(403).send('Forbidden');
+  } else if (err.code === 'permissions_not_found') {
+    res.status(403).send('Could not find permissions for user. Bad configuration');
+  } else if (err.code === 'user_object_not_found') {
+    res.status(403).send('user object "user" was not found. Check your configuration.');
+  }
+
+  res.locals.title = 'Error';
+  console.log(err);
+
+  // Render the error page
+  res.status(err.status || 500);
+  // res.render('error');
+});
+
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
