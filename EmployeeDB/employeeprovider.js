@@ -74,7 +74,7 @@ EmployeeProvider.prototype.update = function(employeeId, employees, callback) {
 					employees,
 					function(error, employees) {
 						if(error) callback(error);
-						else callback(null, employees)       
+						else callback(null, employees)
 					});
       }
     });
