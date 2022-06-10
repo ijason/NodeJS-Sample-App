@@ -1,0 +1,14 @@
+{
+  "name": "application-name",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "jade": "*",
+    "stylus": "*",
+    "mongodb": ">= 0.9.6-7"
+  }
+}
